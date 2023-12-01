@@ -1,0 +1,67 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\enrique\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\cores\\esp32"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\enrique\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\variants\\doitESP32devkitV1"
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\build\\sketch\\codigo_esp32.ino.cpp",
+    "Include": "Preferences.h",
+    "Includepath": "C:\\Users\\enrique\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\libraries\\Preferences\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\build\\sketch\\codigo_esp32.ino.cpp",
+    "Include": "Keypad.h",
+    "Includepath": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Keypad-master\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\build\\sketch\\codigo_esp32.ino.cpp",
+    "Include": "Adafruit_NeoPixel.h",
+    "Includepath": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel"
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\build\\sketch\\codigo_esp32.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.5\\libraries\\Preferences\\src\\Preferences.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Keypad-master\\src\\Key.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Keypad-master\\src\\Keypad.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\Adafruit_NeoPixel.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\esp.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\esp8266.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\enrique\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel\\kendyte_k210.c",
+    "Include": "",
+    "Includepath": null
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "additionalFiles": "",
+  "builtInToolsFolders": "",
+  "compiler.optimization_flags": "",
+  "customBuildProperties": "",
+  "fqbn": "esp32:esp32:esp32doit-devkit-v1:FlashFreq=80,UploadSpeed=921600,DebugLevel=none",
+  "hardwareFolders": "C:\\Users\\enrique\\AppData\\Local\\Arduino15\\packages",
+  "otherLibrariesFolders": "C:\\Users\\enrique\\Documents\\Arduino\\libraries",
+  "runtime.ide.version": "10607",
+  "sketchLocation": "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32"
+}
