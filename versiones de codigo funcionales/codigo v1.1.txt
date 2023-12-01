@@ -1,0 +1,389 @@
+// ********* requerimientos de teclado matricial *********
+
+// importa libreria Keypad
+#include <Keypad.h>
+// define numero de filas
+const uint8_t ROWS = 2;
+// define numero de columnas
+const uint8_t COLS = 3;
+// define la distribucion de teclas
+char keys[ROWS][COLS] = {
+    {'1', '2', '3'},
+    {'4', '5', '6'}};
+// pines correspondientes a las filas
+uint8_t colPins[COLS] = {5, 4, 15}; // 5 = C, 4 = D, 15 = E
+// pines correspondientes a las columnas
+uint8_t rowPins[ROWS] = {19, 18}; // 19 = A, 18 = B
+// crea objeto con los prametros creados previamente
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+// ********* requerimientos de tira de neopixeles *********
+
+#include <Adafruit_NeoPixel.h>
+
+#ifdef __AVR__
+#include <avr/power.h>
+#endif
+
+#define Pin 21
+#define CantidadLed 6
+
+// Driver
+// WS2812 - NEO_KHZ800
+// WS2811 - NEO_KHZ400
+// LED
+// GRB - NEO_GRB
+// RGB - NEO_RGB
+// RGBW - NEO_RGBW
+
+Adafruit_NeoPixel tira = Adafruit_NeoPixel(CantidadLed, Pin, NEO_GRB + NEO_KHZ800);
+
+// ******* declaracion de variables globales y funciones del teclado con los neopixeles ********
+
+// *************** Prototipos de funciones ************
+void loopPrincipal();
+void menu();
+void subMenu();
+void sumaTiempo();
+void restaTiempo();
+void editarTiempoMayor();
+void editarTiempoMenor();
+void resetearTiempo();
+void seleccionNeopixel();
+
+//********* Variables globales ***********
+
+// variables para neopixeles
+
+unsigned long tiempos[10] = {1000, 2000, 3000, 4000, 5000}, cambioTiempos[10] = {1, 1, 1, 1, 1};
+int incrementos[10] = {0, 0, 0, 0, 0};
+
+// variables globales
+boolean bandera1 = false, bandera2 = false, indicadorNeopixel = false, banderaMensaje1 = true, banderaMensaje2 = true, banderaMensaje3 = true;
+
+// char neoSeleccionado = '0';
+
+int neoSeleccionado = 0;
+
+unsigned long tiemposConfig[5] = {1, 10, 100, 1000, 10000}, tiempoNeoSeleccionado = 0, increDecre = 0;
+
+unsigned long tiempoUltimaPulsacion = 0, ultimoTiempo = 0;
+
+void setup()
+{
+    Serial.begin(9600); // iniciar puerto serial
+
+    // ********* iniciacion de tira de neopixeles *******
+
+#if defined(__AVR_ATtiny85__)
+    if (F_CPU == 16000000)
+        clock_prescale_set(clock_div_1);
+#endif
+
+    tira.begin();
+    tira.setBrightness(100);
+    tira.show();
+}
+
+//********* CODIGO PRINCIPAL *************
+
+void loop()
+{
+    loopPrincipal();
+}
+
+//********* FUNCIONES *************
+
+void loopPrincipal()
+{
+
+    if (banderaMensaje1 == true)
+    {
+        Serial.println("\nElija el neopixel que quiere encender"); // envia a monitor serial la tecla presionada
+        banderaMensaje1 = false;
+    }
+
+    char key = keypad.getKey(); // comprueba que se haya presionado una tecla
+
+    if (key)
+    {
+        Serial.print("\nHa elegido el neopixel "); // envia a monitor serial la tecla presionada
+        Serial.println(key);                       // envia a monitor serial la tecla presionada
+
+        switch (key)
+        {
+        case '1':
+            controlNeopixel(255, 0, 0, 0, tiempos[0], '1'); // codificacion para dato 1, color rojo, tiempo 1 seg, dato
+            break;
+
+        case '2':
+            controlNeopixel(0, 255, 0, 1, tiempos[1], '2'); // codificacion para dato 2, color rojo, tiempo 2 seg, dato
+            break;
+
+        case '3':
+            controlNeopixel(0, 0, 255, 2, tiempos[2], '3'); // codificacion para dato 3, color rojo, tiempo 3 seg, dato
+            break;
+
+        case '4':
+            controlNeopixel(255, 255, 0, 3, tiempos[3], '4'); // codificacion para dato 4, color rojo, tiempo 4 seg, dato
+            break;
+
+        case '5':
+            controlNeopixel(255, 0, 255, 4, tiempos[4], '5'); // codificacion para dato 5, color rojo, tiempo 5 seg, dato
+            break;
+
+        case '6':
+            Serial.println("\nEntro al menu"); // envia a monitor serial la tecla presionada
+            menu();
+            break;
+        }
+    }
+    else
+    {
+        ;
+    }
+}
+
+void menu()
+{
+    bandera1 = true;
+
+    while (bandera1 == true)
+    {
+
+        if (banderaMensaje3 == true)
+        {
+            Serial.println("\nQue neopixel necesita modificar"); // envia a monitor serial la tecla presionada
+            banderaMensaje3 = false;
+        }
+
+        char key = keypad.getKey(); // comprueba que se haya presionado una tecla
+
+        if (key)
+        {
+            Serial.print("\nHa elegido el neopixel "); // envia a monitor serial la tecla presionada
+            Serial.println(key);                       // envia a monitor serial la tecla presionada
+
+            switch (key)
+            {
+            case '1':
+                subMenu('1'); // envia el neopixel que se quiere configurar
+                break;
+
+            case '2':
+                subMenu('2'); // envia el neopixel que se quiere configurar
+                break;
+
+            case '3':
+                subMenu('3'); // envia el neopixel que se quiere configurar
+                break;
+
+            case '4':
+                subMenu('4'); // envia el neopixel que se quiere configurar
+                break;
+
+            case '5':
+                subMenu('5'); // envia el neopixel que se quiere configurar
+                break;
+
+            case '6':
+                Serial.println("\nSalio del menu"); // envia a monitor serial la tecla presionada
+                banderaMensaje1 = true;
+                banderaMensaje3 = true;
+                bandera1 = false;
+                break;
+            }
+        }
+        else
+        {
+            ;
+        }
+    }
+}
+
+void subMenu(char key)
+{
+
+    neoSeleccionado = key - '0';
+    neoSeleccionado = neoSeleccionado - 1;
+    bandera2 = true;
+
+    Serial.print("\nSubmenu de configuracion de neopixel: "); // envia a monitor serial la tecla presionada
+    Serial.println(key);
+
+    while (bandera2 == true)
+    {
+        seleccionNeopixel(neoSeleccionado);
+
+        if (banderaMensaje2 == true)
+        {
+            Serial.print("\nTimer de neopixel: "); // envia a monitor serial la tecla presionada
+            Serial.println(tiempoNeoSeleccionado);
+            Serial.print("\nIncrementos o decrementos: "); // envia a monitor serial la tecla presionada
+            Serial.println(increDecre);
+
+            banderaMensaje2 = false;
+        }
+
+        char key = keypad.getKey(); // comprueba que se haya presionado una tecla
+
+        if (key)
+        {
+            Serial.print("\nHa elegido la opcion: "); // envia a monitor serial la tecla presionada
+            Serial.println(key);                      // envia a monitor serial la tecla presionada
+
+            switch (key)
+            {
+            case '1':
+                sumaTiempo(); // envia el neopixel que se quiere configurar
+                break;
+
+            case '2':
+                restaTiempo(); // envia el neopixel que se quiere configurar
+                break;
+
+            case '3':
+                editarTiempoMayor(); // envia el neopixel que se quiere configurar
+                break;
+
+            case '4':
+                editarTiempoMenor(); // envia el neopixel que se quiere configurar
+                break;
+
+            case '5':
+                resetearTiempo(); // envia el neopixel que se quiere configurar
+                break;
+
+            case '6':
+                Serial.println("\nSalir del submenu"); // envia a monitor serial la tecla presionada
+                bandera2 = false;
+                banderaMensaje3 = true;
+                banderaMensaje2 = true;
+                break;
+            }
+        }
+        else
+        {
+            ;
+        }
+    }
+}
+
+void sumaTiempo()
+{
+    Serial.println(" sumar tiempo"); // envia a monitor serial la tecla presionada
+
+    tiempos[neoSeleccionado] += cambioTiempos[neoSeleccionado];
+
+    banderaMensaje2 = true;
+}
+
+void restaTiempo()
+{
+    Serial.println(" resta tiempo"); // envia a monitor serial la tecla presionada
+    banderaMensaje2 = true;
+
+    if (cambioTiempos[neoSeleccionado] <= tiempos[neoSeleccionado])
+    {
+        tiempos[neoSeleccionado] -= cambioTiempos[neoSeleccionado];
+    }
+    else
+    {
+        // comando no valido
+    }
+}
+
+void editarTiempoMayor()
+{
+    Serial.println(" editar a tiempo mayor"); // envia a monitor serial la tecla presionada
+    banderaMensaje2 = true;
+
+    if (incrementos[neoSeleccionado] == 4)
+    {
+        incrementos[neoSeleccionado] == 4;
+    }
+    else
+    {
+        incrementos[neoSeleccionado]++;
+    }
+
+    cambioTiempos[neoSeleccionado] = tiemposConfig[incrementos[neoSeleccionado]];
+}
+
+void editarTiempoMenor()
+{
+    Serial.println(" editar a tiempo menor"); // envia a monitor serial la tecla presionada
+    banderaMensaje2 = true;
+
+    if (incrementos[neoSeleccionado] == 0)
+    {
+        incrementos[neoSeleccionado] == 0;
+    }
+    else
+    {
+        incrementos[neoSeleccionado]--;
+    }
+    cambioTiempos[neoSeleccionado] = tiemposConfig[incrementos[neoSeleccionado]];
+}
+
+void resetearTiempo()
+{
+    Serial.println(" Resetear"); // envia a monitor serial la tecla presionada
+    banderaMensaje2 = true;
+
+    tiempos[neoSeleccionado] = 0;
+}
+
+void seleccionNeopixel(int neoSeleccionado)
+{
+    tiempoNeoSeleccionado = tiempos[neoSeleccionado];
+    increDecre = cambioTiempos[neoSeleccionado];
+}
+
+void controlNeopixel(int R, int G, int B, int numNeo, unsigned long t, char dato)
+{ // control de prendido y
+
+    Serial.print("\nneopixel seleccionado: "); // envia a monitor serial la tecla presionada
+    Serial.println(numNeo);
+    Serial.print("\ntiempo encendido: "); // envia a monitor serial la tecla presionada
+    Serial.println(t);
+
+    ultimoTiempo = t;
+
+    indicadorNeopixel = true;
+    tiempoUltimaPulsacion = millis();
+
+    uint32_t ColorActual = tira.Color(R, G, B);
+    uint32_t ColorApagado = tira.Color(0, 0, 0);
+
+    tira.setPixelColor(numNeo, ColorActual);
+    tira.show();
+
+    while (indicadorNeopixel == true)
+    {
+        char key = keypad.getKey(); // comprueba que se haya presionado una tecla
+
+        if (millis() >= tiempoUltimaPulsacion + ultimoTiempo)
+        {
+            tira.setPixelColor(numNeo, ColorApagado);
+            tira.show();
+
+            Serial.println("\nSe apago por tiempo"); // envia a monitor serial la tecla presionada
+
+            indicadorNeopixel = false;
+        }
+        else
+        {
+            if (key == dato)
+            {
+                tira.setPixelColor(numNeo, ColorApagado);
+                tira.show();
+
+                Serial.println("\nSe apago por doble pulsado"); // envia a monitor serial la tecla presionada
+
+                indicadorNeopixel = false;
+            }
+        }
+    }
+    banderaMensaje1 = true;
+}
