@@ -120,6 +120,7 @@ void setup()
     // inicializar en pin del relay como salida
 
     pinMode(pinRelay, OUTPUT);
+    
     digitalWrite(pinRelay, HIGH);
 }
 
