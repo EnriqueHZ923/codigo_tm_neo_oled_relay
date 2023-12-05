@@ -1,16 +1,16 @@
-# 1 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+# 1 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 // ********* se agregaron los comentarios por el puerto serial de manera correcta *********
 
 //********** requerimientos de memoria flash ********************
 
-# 6 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino" 2
+# 6 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino" 2
 
 Preferences preferences;
 
 // ********* requerimientos de teclado matricial *********
 
 // importa libreria Keypad
-# 13 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino" 2
+# 13 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino" 2
 // define numero de filas
 const uint8_t ROWS = 2;
 // define numero de columnas
@@ -28,15 +28,8 @@ Keypad keypad = Keypad(((char*)keys), rowPins, colPins, ROWS, COLS);
 
 // ********* requerimientos de tira de neopixeles *********
 
-# 31 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino" 2
-
-
-
-
-
-#define Pin 23
-#define CantidadLed 6
-
+# 31 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino" 2
+# 39 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 // Driver
 // WS2812 - NEO_KHZ800
 // WS2811 - NEO_KHZ400
@@ -120,7 +113,7 @@ void setup()
 
     // inicializar en pin del relay como salida
 
-    pinMode(pinRelay, 0x02);
+    pinMode(pinRelay, 0x03);
 }
 
 //********* CODIGO PRINCIPAL *************

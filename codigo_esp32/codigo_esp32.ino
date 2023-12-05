@@ -120,6 +120,7 @@ void setup()
     // inicializar en pin del relay como salida
 
     pinMode(pinRelay, OUTPUT);
+    digitalWrite(pinRelay, HIGH);
 }
 
 //********* CODIGO PRINCIPAL *************
@@ -437,7 +438,7 @@ void confiEventos(int neoSeleccionado)
             banderaEvento = false;
 
             pulsoRelay();
-            
+
             tira.setPixelColor(neoSeleccionado, ColorApagado);
             tira.show();
             banderaMensaje5 = true;
@@ -724,7 +725,7 @@ void seleccionGuardadotiempo(int neoSeleccionado)
 
 void pulsoRelay()
 {
-    digitalWrite(pinRelay, HIGH);
-    delay(500);
     digitalWrite(pinRelay, LOW);
+    delay(500);
+    digitalWrite(pinRelay, HIGH);
 }

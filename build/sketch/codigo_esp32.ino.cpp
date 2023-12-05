@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#line 1 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 1 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 // ********* se agregaron los comentarios por el puerto serial de manera correcta *********
 
 //********** requerimientos de memoria flash ********************
@@ -94,23 +94,23 @@ int banderaNeo1 = 0;
 
 int pinRelay = 13;
 
-#line 95 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 95 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void setup();
-#line 127 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 127 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void loop();
-#line 274 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 274 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void seleccionSubmenu(char key);
-#line 373 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 373 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void confiEventos(int neoSeleccionado);
-#line 452 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 452 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void subMenuManual();
-#line 590 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 590 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void seleccionNeopixel(int neoSeleccionado);
-#line 596 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 596 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void controlNeopixel(int R, int G, int B, int numNeo, unsigned long t, char dato);
-#line 703 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 703 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void seleccionGuardadotiempo(int neoSeleccionado);
-#line 95 "C:\\Users\\enrique\\Desktop\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
+#line 95 "C:\\Users\\eslas\\OneDrive\\Escritorio\\codigo_tm_neo_oled_relay\\codigo_esp32\\codigo_esp32.ino"
 void setup()
 {
     Serial.begin(9600); // iniciar puerto serial
